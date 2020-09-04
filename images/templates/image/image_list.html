@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Images
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% load thumbnail %}
+            {% for image in list %}
+                <div class="col-6">
+                {% thumbnail image.image "300" as image_preview %}
+                    <div class="card" style="width: 28rem; margin: 2rem;">
+                      <img src="{{ image.image.url }}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ image.title|title }}</h5>
+                        <p class="card-text">{{ title.description }}</p>
+                        <a href="{{ image.get_absolute_url }}" class="btn btn-primary">Go to this Image</a>
+                      </div>
+                    </div>
+                {% endthumbnail %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

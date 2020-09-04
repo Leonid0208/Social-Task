@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Task
+{% endblock %}
+
+{% block content %}
+    {% load thumbnail %}
+    {% thumbnail image.image "500" as image_preview %}
+        <h1>{{ image.title }}</h1>
+
+        <img src="{{ image_preview.url }}" alt="{{ image.title }}">
+        <p class="text-justify mt-5" style="font-size: large;">{{ image.description }}<br><span>{{ image.created }}</span></p>
+    {% endthumbnail %}
+    <h1>Comments:</h1>
+    {% if user.is_authenticated %}
+        <form method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Send">
+        </form>
+    {% endif %}
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">
+                Comment {{ forloop.counter }} by {{ comment.user }}
+                {{ comment.created }}
+            </p>
+            {{ comment.body|linebreaks }}
+        </div>
+    {% empty %}
+        <p>There are no comments yet.</p>
+    {% endfor %}
+{% endblock %}
