@@ -25,7 +25,7 @@ SECRET_KEY = 'o_%#*r$eh%565q96t&j=81wd3l*j=4sby)=-&!1^@a%8(0bk10'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['glacial-harbor-26368.herokuapp.com']
+ALLOWED_HOSTS = ['glacial-harbor-26368.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
