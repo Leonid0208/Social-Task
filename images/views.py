@@ -13,9 +13,7 @@ from django.contrib import messages
 def image_create(request):
     if request.method == "POST":
         form = ImageCreateForm(request.POST, request.FILES)
-        print(1111111111111111111111111)
         if form.is_valid():
-            print(222222222222222222222)
             new_item = form.save(commit=False)
             new_item.user = request.user
             new_item.save()
@@ -24,13 +22,6 @@ def image_create(request):
     else:
         form = ImageCreateForm()
     return render(request, 'image/create.html', {'form': form})
-
-
-# class CreatePostView(LoginRequiredMixin, ObjectCreate, CreateView):
-#     model = Image
-#     form_class = ImageCreateForm
-#     template_name = 'image/create.html'
-#     success_url = reverse_lazy('image_list')
 
 
 def image_detail(request, slug):
